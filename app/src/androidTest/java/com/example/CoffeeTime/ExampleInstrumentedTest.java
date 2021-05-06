@@ -1,4 +1,4 @@
-package com.example.coffeetime;
+package com.example.CoffeeTime;
 
 import android.content.Context;
 

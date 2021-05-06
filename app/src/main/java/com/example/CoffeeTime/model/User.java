@@ -1,4 +1,4 @@
-package com.example.coffeetime.model;
+package com.example.CoffeeTime.model;
 
 import java.util.LinkedList;
 import java.util.List;

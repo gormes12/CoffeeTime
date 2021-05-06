@@ -1,12 +1,17 @@
-package com.example.coffeetime.model;
+package com.example.CoffeeTime.model;
 
 import java.util.Objects;
+import java.util.UUID;
 
 public class Organization {
 
     public String UniqueID;
     public String Name;
     public int NumOfMembers;
+
+    public Organization(){
+        UniqueID = UUID.randomUUID().toString();
+    }
 
     public void setUniqueID(String uniqueID) {
         UniqueID = uniqueID;

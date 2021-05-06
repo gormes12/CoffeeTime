@@ -1,4 +1,4 @@
-package com.example.coffeetime;
+package com.example.CoffeeTime;
 
 import org.junit.Test;
 

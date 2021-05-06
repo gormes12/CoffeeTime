@@ -1,10 +1,10 @@
-package com.example.coffeetime.model;
+package com.example.CoffeeTime.model;
 
 import java.util.Objects;
 
 public class Meeting {
     static final int MAX_PARTICIPANTS = 5;
-
+    public String UniqueId;
     public String ZoomMeetingID;
     public String Passcode;
     public String MeetingName;
