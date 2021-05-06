@@ -1,24 +1,22 @@
 package com.example.CoffeeTime.model;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
-public class User {
+public class User implements Serializable {
 
     public String UniqueID;
     public String NickName;
-    public List<Organization> organizations; // Max 5
+    public Organization organization; // Max 5
 
     public String getUniqueID() {
         return UniqueID;
     }
 
-    public List<Organization> getOrganizations() {
-        if (organizations == null){
-            organizations = new LinkedList<>();
-        }
-        return organizations;
+    public Organization getOrganizations() {
+        return organization;
     }
 
     public String getNickName() {
@@ -29,8 +27,8 @@ public class User {
         NickName = nickName;
     }
 
-    public void setOrganizations(List<Organization> organizations) {
-        this.organizations = organizations;
+    public void setOrganizations(Organization organization) {
+        this.organization = organization;
     }
 
     public void setUniqueID(String uniqueID) {

@@ -16,6 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.MatchActivity" />
+        <activity android:name=".activity.SignUpActivity" />
+        <activity android:name=".activity.EditProfileActivity" />
+        <activity android:name=".activity.OrganizationSelectActivity" />
     </application>
 
 </manifest>

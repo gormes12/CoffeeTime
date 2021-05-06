@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.CoffeeTime.Firebase.AuthHelper;
 import com.example.CoffeeTime.activity.MatchActivity;
+import com.example.CoffeeTime.activity.SignUpActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,12 +36,19 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else{
                     if (email.getText().toString().trim().matches(emailPattern)) {
-                        AuthHelper authHelper = new AuthHelper();
-                        authHelper.RegisterUser(email.getText().toString(), password.getText().toString(), MainActivity.this::executeActivity);
+                        AuthHelper.RegisterUser(email.getText().toString(), password.getText().toString(), MainActivity.this::executeActivity);
                     } else {
                         Toast.makeText(getApplicationContext(),"Invalid email address", Toast.LENGTH_SHORT).show();
                     }
                 }
+            }
+        });
+
+        Button ButtonSignup = (Button) findViewById(R.id.ButtonSignup);
+        ButtonSignup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, SignUpActivity.class));
             }
         });
     }

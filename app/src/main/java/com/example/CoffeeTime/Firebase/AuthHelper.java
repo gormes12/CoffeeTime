@@ -16,12 +16,11 @@ import java.util.function.Consumer;
 import static android.content.ContentValues.TAG;
 
 public class AuthHelper {
-    private FirebaseAuth mAuth;
-    private User mCreated;
+    private static FirebaseAuth mAuth = FirebaseAuth.getInstance();;
+    private static User mCreated = new User();
 
     public AuthHelper(){
         mAuth = FirebaseAuth.getInstance();
-        mCreated = new User();
     }
 
     public static boolean IsSignedInUser(){
@@ -37,7 +36,7 @@ public class AuthHelper {
         return null;
     }
 
-    public void RegisterUser(String email, String password, Consumer<String> executable){
+    public static void RegisterUser(String email, String password, Consumer<String> executable){
         Task<AuthResult> result = mAuth.createUserWithEmailAndPassword(email, password);
         result.addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -46,6 +45,7 @@ public class AuthHelper {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "createUserWithEmail:success");
                     FirebaseUser user = mAuth.getCurrentUser();
+                    user.sendEmailVerification();
                     Login(email, password, executable);
                 } else {
                     // If sign in fails, display a message to the user.
@@ -55,7 +55,7 @@ public class AuthHelper {
         });
     }
 
-    public void Login(String email, String password, Consumer<String> executable){
+    public static void Login(String email, String password, Consumer<String> executable){
         Task<AuthResult> result = mAuth.signInWithEmailAndPassword(email, password);
         result.addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -66,7 +66,6 @@ public class AuthHelper {
                     FirebaseUser user = mAuth.getCurrentUser();
                     mCreated.UniqueID = user.getUid();
                     executable.accept(user.getUid());
-                    user.sendEmailVerification();
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "createUserWithEmail:failure", task.getException());
@@ -75,23 +74,23 @@ public class AuthHelper {
         });
     }
 
-    public boolean IsVerifiedEmail(){
+    public static boolean IsVerifiedEmail(){
         return mAuth.getCurrentUser().isEmailVerified();
     }
 
-    public void ChangePassword(String oldPassword, String newPassword){
-
+    public static void ChangePassword(String newPassword){
+        mAuth.getCurrentUser().updatePassword(newPassword);
     }
 
-    public void ForgotPassword(String email){
+    public static void ForgotPassword(String email){
         mAuth.sendPasswordResetEmail(email);
     }
 
-    public void SignOut(){
+    public static void SignOut(){
         mAuth.signOut();
     }
 
-    public User getCreatedUser() throws Exception {
+    public static User getCreatedUser() throws Exception {
         if(mCreated.UniqueID == null){
             throw new Exception("Please login first");
         }
