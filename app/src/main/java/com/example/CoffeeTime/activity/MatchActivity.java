@@ -1,11 +1,17 @@
 package com.example.CoffeeTime.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.CoffeeTime.MainActivity;
 import com.example.CoffeeTime.R;
+
 import us.zoom.sdk.JoinMeetingOptions;
 import us.zoom.sdk.JoinMeetingParams;
 import us.zoom.sdk.MeetingService;
@@ -18,6 +24,8 @@ import us.zoom.sdk.ZoomSDKInitParams;
 import us.zoom.sdk.ZoomSDKInitializeListener;
 
 public class MatchActivity extends AppCompatActivity {
+
+    String orgName = "BetterWork";
 
     private ZoomSDKAuthenticationListener authListener = new ZoomSDKAuthenticationListener() {
         /**
@@ -45,18 +53,47 @@ public class MatchActivity extends AppCompatActivity {
 
         initializeSdk(this);
 
+        TextView TextOrganizationName = (TextView) findViewById(R.id.TextOrganizationName);
+        TextOrganizationName.setText(orgName);
+
+        Button ButtonEditUser = (Button) findViewById(R.id.buttonEditUser2);
+        ButtonEditUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MatchActivity.this, EditProfileActivity.class));
+            }
+        });
+
+        Button buttonAbout = (Button) findViewById(R.id.buttonAbout3);
+        buttonAbout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MatchActivity.this, AboutUsActivity.class));
+            }
+        });
+
+        Button buttonSignOut = (Button) findViewById(R.id.buttonSignOut3);
+        buttonSignOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MatchActivity.this, MainActivity.class));
+            }
+        });
+
+
         Button ButtonWC = (Button) findViewById(R.id.ButtonWC);
         ButtonWC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //TODO: if there is an available room use join meeting
-                //joinMeeting(MatchActivity.this, meetingNumber, password);
+//                joinMeeting(MatchActivity.this, meetingNumber, password);
+                joinMeeting(MatchActivity.this, "76934252351", "7hGpFt", "Guest");
                 //TODO: else
-                 if (ZoomSDK.getInstance().isLoggedIn()) {
-                                startMeeting(MatchActivity.this);
-                            } else {
-                                createLoginDialog();
-                            }
+//                 if (ZoomSDK.getInstance().isLoggedIn()) {
+//                                startMeeting(MatchActivity.this);
+//                            } else {
+//                                createLoginDialog();
+//                            }
             }
         });
     }
@@ -84,11 +121,11 @@ public class MatchActivity extends AppCompatActivity {
     }
 
     //1. Write the joinMeeting function.
-    private void joinMeeting(Context context, String meetingNumber, String password) {
+    private void joinMeeting(Context context, String meetingNumber, String password, String userName) {
         MeetingService meetingService = ZoomSDK.getInstance().getMeetingService();
         JoinMeetingOptions options = new JoinMeetingOptions();
         JoinMeetingParams params = new JoinMeetingParams();
-        params.displayName = "Gideon_Display"; // TODO: Enter your name
+        params.displayName = userName; // TODO: Enter your name
         params.meetingNo = meetingNumber;
         params.password = password;
         meetingService.joinMeetingWithParams(context, params, options);

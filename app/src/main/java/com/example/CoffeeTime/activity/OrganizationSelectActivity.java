@@ -29,11 +29,44 @@ public class OrganizationSelectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.organizationselect_layout);
 
-        Intent i = getIntent();
-        currUser = (User)i.getSerializableExtra("userClass");
-        FireStoreHelper.GetAllOrganizations(OrganizationSelectActivity.this::executeActivity);
+        executeActivity();
+//        Intent i = getIntent();
+//        currUser = (User)i.getSerializableExtra("userClass");
+//        FireStoreHelper.GetAllOrganizations(OrganizationSelectActivity.this::executeActivity);
 
 
+    }
+
+    public void executeActivity(){
+        Spinner spinner = findViewById(R.id.InputOrganization);
+        ArrayList<String> arrayList = new ArrayList<>();
+        arrayList.add("BetterWork");
+        arrayList.add("MTAHack");
+        arrayList.add("INNOVID");
+        arrayList.add("Wix");
+        arrayList.add("duda");
+
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,                         android.R.layout.simple_spinner_item, arrayList);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(arrayAdapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedOrg = parent.getItemAtPosition(position).toString();
+//                Toast.makeText(parent.getContext(), tutorialsName, Toast.LENGTH_LONG).show();
+            }
+            @Override
+            public void onNothingSelected(AdapterView <?> parent) {
+            }
+        });
+
+        Button ButtonSetOrganization = (Button) findViewById(R.id.ButtonSetOrganization);
+        ButtonSetOrganization.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(OrganizationSelectActivity.this, UserUpdateActivity.class));
+            }
+        });
     }
 
     public void executeActivity(List<Organization> organizationList){

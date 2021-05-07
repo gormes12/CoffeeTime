@@ -5,6 +5,57 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <Button
+        android:id="@+id/buttonHome3"
+        android:layout_width="85dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="#7E6212"
+        android:text="Home"
+        android:textColor="#000000"
+        app:cornerRadius="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/buttonEditUser2"
+        android:layout_width="85dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="#ffebcc"
+        android:text="Edit"
+        android:textColor="#000000"
+        app:cornerRadius="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonHome3" />
+
+    <Button
+        android:id="@+id/buttonAbout3"
+        android:layout_width="85dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="#ffebcc"
+        android:text="About"
+        app:cornerRadius="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonEditUser2" />
+
+    <Button
+        android:id="@+id/buttonSignOut3"
+        android:layout_width="95dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="#ffebcc"
+        android:text="LogOut"
+        android:textColor="#000000"
+        app:cornerRadius="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonAbout3" />
+
     <TextView
         android:id="@+id/mainHeader4"
         android:layout_width="wrap_content"
@@ -19,36 +70,39 @@
 
     <TextView
         android:id="@+id/OrganizationText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="362dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="80dp"
-        android:text="Choose your organization"
+        android:layout_marginEnd="24dp"
+        android:text="Your coffee mate will be chosen from the organization:"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mainHeader4" />
 
-    <Spinner
-        android:id="@+id/InputOrganizationSpinner"
-        android:layout_width="357dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="24dp"
-        android:textAlignment="center"
+    <Button
+        android:id="@+id/ButtonWC"
+        android:layout_width="193dp"
+        android:layout_height="186dp"
+        android:backgroundTint="#FFFFFF"
+        android:foreground="@mipmap/ic_iwantcoffee_foreground"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonAbout3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TextOrganizationName"
+        app:layout_constraintVertical_bias="0.292" />
+
+    <TextView
+        android:id="@+id/TextOrganizationName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/OrganizationText" />
-
-    <Button
-        android:id="@+id/ButtonWC"
-        android:layout_width="wrap_content"
-        android:layout_height="127dp"
-        android:text="I Want Coffee"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/InputOrganizationSpinner" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

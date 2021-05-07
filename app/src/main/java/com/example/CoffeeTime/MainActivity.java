@@ -31,14 +31,15 @@ public class MainActivity extends AppCompatActivity {
                 String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
                 if(email.getText().toString().isEmpty()) {
-                    Toast.makeText(getApplicationContext(),"enter email address",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this,"enter email address",Toast.LENGTH_SHORT).show();
                 }
                 else if (password.getText().toString().isEmpty()) {
                     Toast.makeText(getApplicationContext(),"enter password",Toast.LENGTH_SHORT).show();
                 }
                 else{
                     if (email.getText().toString().trim().matches(emailPattern)) {
-                        AuthHelper.Login(email.getText().toString(), password.getText().toString(), MainActivity.this::executeActivity);
+//                        AuthHelper.Login(email.getText().toString(), password.getText().toString(), MainActivity.this::executeActivity);
+                        executeActivity(email.getText().toString(), password.getText().toString());
                     } else {
                         Toast.makeText(getApplicationContext(),"Invalid email address", Toast.LENGTH_SHORT).show();
                     }
@@ -56,6 +57,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public void executeActivity(String email, String password) {
+        startActivity(new Intent(MainActivity.this, MatchActivity.class));
+    }
 
     public void executeActivity(String id){
         if (id.equals(AuthHelper.GetUserId())){

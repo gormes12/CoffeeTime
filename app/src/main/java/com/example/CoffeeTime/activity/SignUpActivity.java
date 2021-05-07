@@ -33,7 +33,8 @@ public class SignUpActivity extends AppCompatActivity {
 
                 if(checkNotEmpty(inputUserName, email, password1, password2)){
                     if(checkPasswordAndEmail(password1, password2, email)){
-                        AuthHelper.RegisterUser(email.getText().toString(), password1.getText().toString(), SignUpActivity.this::executeActivity);
+//                        AuthHelper.RegisterUser(email.getText().toString(), password1.getText().toString(), SignUpActivity.this::executeActivity);
+                        executeActivity();
                     }
                 }
             }
@@ -74,6 +75,21 @@ public class SignUpActivity extends AppCompatActivity {
         }
 
         return res;
+    }
+
+    public void executeActivity(){
+//        if (id.equals(AuthHelper.GetUserId())){
+//            EditText inputUserName = (EditText) findViewById(R.id.InputUserName);
+//            try {
+//                User user = AuthHelper.getCreatedUser();
+//                user.setName(inputUserName.getText().toString());
+                Intent intent = new Intent(SignUpActivity.this, OrganizationSelectActivity.class);
+//                intent.putExtra("userClass", user);
+                startActivity(intent);
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        }
     }
 
     public void executeActivity(String id){
