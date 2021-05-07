@@ -19,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signin_layout);
+//        startActivity(new Intent(MainActivity.this, MatchActivity.class)); //TODO:DELETE!!!!!
+
 
         Button ButtonSign = (Button) findViewById(R.id.ButtonSign);
         ButtonSign.setOnClickListener(new View.OnClickListener() {
@@ -36,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else{
                     if (email.getText().toString().trim().matches(emailPattern)) {
-                        AuthHelper.RegisterUser(email.getText().toString(), password.getText().toString(), MainActivity.this::executeActivity);
+                        AuthHelper.Login(email.getText().toString(), password.getText().toString(), MainActivity.this::executeActivity);
                     } else {
                         Toast.makeText(getApplicationContext(),"Invalid email address", Toast.LENGTH_SHORT).show();
                     }
@@ -52,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
 
     public void executeActivity(String id){
         if (id.equals(AuthHelper.GetUserId())){

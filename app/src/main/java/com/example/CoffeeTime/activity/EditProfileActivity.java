@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.CoffeeTime.Firebase.AuthHelper;
 import com.example.CoffeeTime.Firebase.FireStoreHelper;
-import com.example.CoffeeTime.MainActivity;
 import com.example.CoffeeTime.R;
 import com.example.CoffeeTime.model.User;
 
@@ -35,7 +34,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 if (inputUserName.getText().toString().isEmpty()) {
                     Toast.makeText(getApplicationContext(), "enter username", Toast.LENGTH_SHORT).show();
                 } else {
-                    user.NickName = inputUserName.getText().toString();
+                    user.setName(inputUserName.getText().toString());
                     FireStoreHelper.UpdateUser(user);
                 }
             }

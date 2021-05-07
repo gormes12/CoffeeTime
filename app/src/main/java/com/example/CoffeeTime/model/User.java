@@ -1,38 +1,36 @@
 package com.example.CoffeeTime.model;
 
 import java.io.Serializable;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Objects;
 
 public class User implements Serializable {
 
-    public String UniqueID;
-    public String NickName;
-    public Organization organization; // Max 5
+    private String id;
+    private String name;
+    private String organizationId; // Max 5
 
-    public String getUniqueID() {
-        return UniqueID;
+    public String getId() {
+        return id;
     }
 
-    public Organization getOrganizations() {
-        return organization;
+    public String getOrganizations() {
+        return organizationId;
     }
 
-    public String getNickName() {
-        return NickName;
+    public String getName() {
+        return name;
     }
 
-    public void setNickName(String nickName) {
-        NickName = nickName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setOrganizations(Organization organization) {
-        this.organization = organization;
+    public void setOrganizations(String organization) {
+        this.organizationId = organization;
     }
 
-    public void setUniqueID(String uniqueID) {
-        UniqueID = uniqueID;
+    public void setId(String id) {
+        this.id = id;
     }
 
     @Override
@@ -40,11 +38,11 @@ public class User implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return UniqueID.equals(user.UniqueID);
+        return id.equals(user.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(UniqueID, NickName);
+        return Objects.hash(id, name);
     }
 }

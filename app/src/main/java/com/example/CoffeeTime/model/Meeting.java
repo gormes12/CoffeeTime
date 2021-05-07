@@ -4,43 +4,42 @@ import java.util.Objects;
 
 public class Meeting {
     static final int MAX_PARTICIPANTS = 5;
-    public String UniqueId;
-    public String ZoomMeetingID;
-    public String Passcode;
-    public String MeetingName;
-    public int CurrentNumOfParticipants;
-    public int MaxNumOfParticipants = MAX_PARTICIPANTS;
+    private String meetingId;
+    private String passcode;
+    private String name;
+    private int members;
+    private int maxMembers = MAX_PARTICIPANTS;
 
-    public void setCurrentNumOfParticipants(int currentNumOfParticipants) {
-        CurrentNumOfParticipants = currentNumOfParticipants;
+    public void setMembers(int members) {
+        this.members = members;
     }
 
-    public void setMeetingName(String meetingName) {
-        MeetingName = meetingName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setPasscode(String passcode) {
-        Passcode = passcode;
+        this.passcode = passcode;
     }
 
-    public void setZoomMeetingID(String zoomMeetingID) {
-        ZoomMeetingID = zoomMeetingID;
+    public void setMeetingId(String meetingId) {
+        this.meetingId = meetingId;
     }
 
-    public String getMeetingName() {
-        return MeetingName;
+    public String getName() {
+        return name;
     }
 
-    public int getCurrentNumOfParticipants() {
-        return CurrentNumOfParticipants;
+    public int getMembers() {
+        return members;
     }
 
     public String getPasscode() {
-        return Passcode;
+        return passcode;
     }
 
-    public String getZoomMeetingID() {
-        return ZoomMeetingID;
+    public String getMeetingId() {
+        return meetingId;
     }
 
     @Override
@@ -48,11 +47,11 @@ public class Meeting {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Meeting meeting = (Meeting) o;
-        return Objects.equals(ZoomMeetingID, meeting.ZoomMeetingID);
+        return Objects.equals(meetingId, meeting.meetingId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ZoomMeetingID);
+        return Objects.hash(meetingId);
     }
 }

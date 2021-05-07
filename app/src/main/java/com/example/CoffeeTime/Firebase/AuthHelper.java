@@ -64,7 +64,7 @@ public class AuthHelper {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "createUserWithEmail:success");
                     FirebaseUser user = mAuth.getCurrentUser();
-                    mCreated.UniqueID = user.getUid();
+                    mCreated.setId(user.getUid());
                     executable.accept(user.getUid());
                 } else {
                     // If sign in fails, display a message to the user.
@@ -91,7 +91,7 @@ public class AuthHelper {
     }
 
     public static User getCreatedUser() throws Exception {
-        if(mCreated.UniqueID == null){
+        if(mCreated.getId() == null){
             throw new Exception("Please login first");
         }
 

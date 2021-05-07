@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "927038017818",
-    "project_id": "coffeetime-282e7",
-    "storage_bucket": "coffeetime-282e7.appspot.com"
+    "project_number": "612800820516",
+    "project_id": "coffeetime-1e43c",
+    "storage_bucket": "coffeetime-1e43c.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:927038017818:android:920a0b76f5a70d7ef99ca3",
+        "mobilesdk_app_id": "1:612800820516:android:0eda9ad71bb010706c2fb1",
         "android_client_info": {
           "package_name": "com.example.CoffeeTime"
         }
       },
       "oauth_client": [
         {
-          "client_id": "927038017818-cssofc75avs8k23pdt0cfb1gvlhmum4v.apps.googleusercontent.com",
+          "client_id": "612800820516-8novfik0v8jp5cgv4513el4c48ve6qnm.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBt6RgnU0yvEmgeQQDuTNATyEzCkQDYuk4"
+          "current_key": "AIzaSyD2jlJD7ELLW-Cy1JwGc2FsjyLJjSv6nbo"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "927038017818-cssofc75avs8k23pdt0cfb1gvlhmum4v.apps.googleusercontent.com",
+              "client_id": "612800820516-8novfik0v8jp5cgv4513el4c48ve6qnm.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

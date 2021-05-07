@@ -5,36 +5,36 @@ import java.util.UUID;
 
 public class Organization {
 
-    public String UniqueID;
-    public String Name;
-    public int NumOfMembers;
+    private String id;
+    private String name;
+    private int members;
 
     public Organization(){
-        UniqueID = UUID.randomUUID().toString();
+        id = UUID.randomUUID().toString();
     }
 
-    public void setUniqueID(String uniqueID) {
-        UniqueID = uniqueID;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
-    public void setNumOfMembers(int numOfMembers) {
-        NumOfMembers = numOfMembers;
+    public void setMembers(int members) {
+        this.members = members;
     }
 
-    public String getUniqueID() {
-        return UniqueID;
+    public String getId() {
+        return id;
     }
 
-    public int getNumOfMembers() {
-        return NumOfMembers;
+    public int getMembers() {
+        return members;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     @Override
@@ -42,11 +42,11 @@ public class Organization {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Organization org = (Organization) o;
-        return Objects.equals(UniqueID, org.UniqueID);
+        return Objects.equals(id, org.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(UniqueID);
+        return Objects.hash(id);
     }
 }

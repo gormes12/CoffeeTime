@@ -8,29 +8,54 @@ import com.example.CoffeeTime.model.Meeting;
 import com.example.CoffeeTime.model.Organization;
 import com.example.CoffeeTime.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.function.Consumer;
 
+import static android.content.ContentValues.TAG;
+
 public class FireStoreHelper {
-    private static DatabaseReference mDataBase = FirebaseDatabase.getInstance().getReference();;
+    private static DatabaseReference mDataBase = FirebaseDatabase.getInstance("https://coffeetime-1e43c-default-rtdb.firebaseio.com/").getReference();
+
+    public static void addListener(){
+        mDataBase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String value = snapshot.getValue(String.class);
+                Log.d(TAG, "Value is: " + value);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });;
+    }
 
     // region User
     public static void AddUser(User user) {
+        addListener();
         if (user == null) {
             throw new IllegalArgumentException("null user");
         }
-        if(user.organization != null){
-            AddOrganization(user.organization);
+        if(user.getOrganizations() != null){
+           // AddOrganization(user.organization);
         }
 
-        mDataBase.child("users").child(user.UniqueID).setValue(user);
+        mDataBase.child("users").child(user.getId()).setValue(user).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+               Log.println(Log.ERROR, "tag", e.getMessage());
+            }
+        });
     }
 
     public static void GetUser(String UserId, Consumer<User> executable){
@@ -49,13 +74,13 @@ public class FireStoreHelper {
     }
 
     public static void UpdateUser(User user){
-        String newName = user.NickName;
-        Organization newOrganizations = user.organization;
+        String newName = user.getName();
+        String newOrganizations = "5";
         HashMap hashMap= new HashMap();
         hashMap.put("NickName", newName);
         hashMap.put("organizations", newOrganizations);
 
-        mDataBase.child("users").child(user.UniqueID).updateChildren(hashMap);
+        mDataBase.child("users").child(user.getId()).updateChildren(hashMap);
     }
 
     public static void DeleteUser(String UserId){
@@ -69,7 +94,12 @@ public class FireStoreHelper {
             throw new IllegalArgumentException("null organization");
         }
 
-        mDataBase.child("organizations").child(organization.UniqueID).setValue(organization);
+         mDataBase.child("organizations").push().setValue(organization).addOnFailureListener(new OnFailureListener() {
+             @Override
+             public void onFailure(@NonNull Exception e) {
+                 Log.println(Log.ERROR, "tag", e.getMessage());
+             }
+         });
     }
 
     public static void GetOrganization(String OrganizationId, Consumer<Organization> executable){
@@ -101,13 +131,13 @@ public class FireStoreHelper {
     }
 
     public static void UpdateOrganization(Organization organization){
-        String newName = organization.Name;
-        int newNumOfMembers = organization.NumOfMembers;
+        String newName = organization.getName();
+        int newNumOfMembers = organization.getMembers();
         HashMap hashMap= new HashMap();
         hashMap.put("Name", newName);
         hashMap.put("NumOfMembers", newNumOfMembers);
 
-        mDataBase.child("organizations").child(organization.UniqueID).updateChildren(hashMap);
+        mDataBase.child("organizations").child(organization.getId()).updateChildren(hashMap);
     }
 
     public static void DeleteOrganization(String OrganizationId){
@@ -121,7 +151,7 @@ public class FireStoreHelper {
             throw new IllegalArgumentException("null meeting");
         }
 
-        mDataBase.child("meetings").child(meeting.ZoomMeetingID).setValue(meeting);
+        mDataBase.child("meetings").child(meeting.getMeetingId()).setValue(meeting);
     }
 
     public static void GetMeeting(String MeetingId, Consumer<Meeting> executable){
@@ -154,13 +184,13 @@ public class FireStoreHelper {
     }
 
     public static void UpdateMeeting(Meeting meeting){
-        String newName = meeting.MeetingName;
-        int newNumOfMembers = meeting.CurrentNumOfParticipants;
+        String newName = meeting.getName();
+        int newNumOfMembers = meeting.getMembers();
         HashMap hashMap= new HashMap();
         hashMap.put("MeetingName", newName);
         hashMap.put("CurrentNumOfParticipants", newNumOfMembers);
 
-        mDataBase.child("meetings").child(meeting.ZoomMeetingID).updateChildren(hashMap);
+        mDataBase.child("meetings").child(meeting.getMeetingId()).updateChildren(hashMap);
     }
 
     public static void DeleteMeeting(String MeetingId){

@@ -19,6 +19,7 @@ public class SignUpActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup_layout);
+        //startActivity(new Intent(SignUpActivity.this, OrganizationSelectActivity.class)); //TODO:DELETE!!!!!
 
         Button ButtonContinue = (Button) findViewById(R.id.ButtonContinue);
         ButtonContinue.setOnClickListener(new View.OnClickListener() {
@@ -80,7 +81,7 @@ public class SignUpActivity extends AppCompatActivity {
             EditText inputUserName = (EditText) findViewById(R.id.InputUserName);
             try {
                 User user = AuthHelper.getCreatedUser();
-                user.NickName = inputUserName.getText().toString();
+                user.setName(inputUserName.getText().toString());
                 Intent intent = new Intent(SignUpActivity.this, OrganizationSelectActivity.class);
                 intent.putExtra("userClass", user);
                 startActivity(intent);
